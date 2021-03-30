@@ -3,19 +3,30 @@ import Link from 'next/link';
 
 const ProfileLink = (props) => (
     <div>
-        <Link href={`/profile?name=${props.name}`}>
-            <a>Go to {props.name}'s profile</a>
+        <Link href={`/p/[profile]`} as={`/p/${props.profile}`}>
+            <a>Go to {props.profile}'s profile</a>
         </Link>
     </div>
 );
 
-const Index = () => (
+const Index = (props) => (
     <Layout>
         <h1>Friends List</h1>
-        <ProfileLink name="jake" />
-        <ProfileLink name="peter" />
-        <ProfileLink name="yumi" />
+        <ProfileLink profile="Jake" />
+        <ProfileLink profile="Peter" />
+        <ProfileLink profile="Yumi" />
     </Layout>
 );
+
+// Index.getInitialProps = async function() {
+//     const res = await fetch('http://keystonemc.com/TEST/name.json');
+//     const data = await res.json();
+
+//     console.log(data.name);
+    
+//     return {
+//         profiles: data.map(profile => profile.name)
+//     }
+// }
 
 export default Index;
